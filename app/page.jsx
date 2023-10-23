@@ -1,4 +1,4 @@
-import Movie from "./Movie";
+import Movie from "./components/Movie";
 
 export default async function Home() {
   const data = await fetch(
@@ -17,6 +17,8 @@ export default async function Home() {
             title={movie.title}
             poster_path={movie.poster_path}
             release_date={movie.release_date}
+            vote_average={movie.vote_average}
+            vote_count={movie.vote_count}
           />
         ))}
       </div>

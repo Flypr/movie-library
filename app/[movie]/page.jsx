@@ -19,23 +19,27 @@ export default async function MovieDetail({ params }) {
     );
     
     const res = await data.json();
+    console.log(res);
 
     return (
         <div>
-            <div>
-                <h2 className="text-2xl">{res.title}</h2>
-                <h3 className="text-lg">{res.release_date}</h3>
-                <h4>Runtime: {res.runtime} minutes</h4 >
-                <h4 className="text-sm bg-green-600 inline-block mt-2 py-1 px-2 rounded">{res.status}</h4>
-                <Image 
-                    className="my-12 w-full"
-                    src={imagePath + res.backdrop_path}
-                    width={1000}
-                    height={1000}
-                    priority
-                />
-                <p>{res.overview}</p>
+            <h1 className="text-2xl">{res.title}</h1>
+            <span className="text-lg">{res.release_date}</span>
+            <h4>{res.vote_average} ({res.vote_count})</h4>
+            <h4>Runtime: {res.runtime} minutes</h4 >
+            <div className='flex gap-2'>
+                {res.genres.map(gen => (
+                    <span className='underline'>{gen.name}</span>
+                ))}
             </div>
+            <Image 
+                className="my-12 w-full"
+                src={imagePath + res.backdrop_path}
+                width={1000}
+                height={1000}
+                priority
+            />
+            <p>{res.overview}</p>
         </div>
     )
 }

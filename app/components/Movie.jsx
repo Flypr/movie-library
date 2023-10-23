@@ -1,12 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Movie({ title, id, poster_path, release_date }) {
-    const imagePath = 'https://image.tmdb.org/t/p/original'
+export default async function Movie({ title, id, poster_path, release_date, vote_average, vote_count }) {
+    const imagePath = 'https://image.tmdb.org/t/p/original';
+
     return (
         <div>
-            <h1>{title}</h1>
-            <h2>{release_date}</h2>
             <Link href={`/${id}`}>
                 <Image 
                     src={imagePath + poster_path} 
@@ -15,6 +14,11 @@ export default function Movie({ title, id, poster_path, release_date }) {
                     alt={title}
                 />
             </Link>
+            <Link href={`/${id}`}>
+                <h2>{title}</h2>
+            </Link>
+            <h3>{release_date}</h3>
+            <span>{vote_average} ({vote_count})</span>
         </div>
     )
 }
